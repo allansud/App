@@ -1,4 +1,6 @@
-﻿using App.Identity.Configuration;
+﻿using App.Business.Implementation;
+using App.Business.Interface;
+using App.Identity.Configuration;
 using App.Identity.Model;
 using App.Repository.Contexto;
 using App.Repository.Implementation;
@@ -7,7 +9,6 @@ using App.Repository.UnitOfWork;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SimpleInjector;
-using System.Data.Entity;
 
 namespace App.IoC
 {
@@ -15,9 +16,10 @@ namespace App.IoC
     {
         public static void RegisterServices(Container container)
         {
-            container.RegisterPerWebRequest<DbContext, AppContext>();
+            container.RegisterPerWebRequest<AppContext>();
             container.RegisterPerWebRequest<IUnitOfWork, UnitOfWork>();
             container.Register(typeof(IRepositoryBase<>), typeof(RepositoryBase<>), Lifestyle.Scoped);
+            container.RegisterPerWebRequest<IUsuarioBusiness, UsuarioBusiness>();
 
             //Asp.Net.Identity
             container.RegisterPerWebRequest<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>());

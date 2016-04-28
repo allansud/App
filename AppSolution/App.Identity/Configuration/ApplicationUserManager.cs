@@ -3,10 +3,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.DataProtection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Identity.Configuration
 {
@@ -59,7 +55,6 @@ namespace App.Identity.Configuration
             var dataProtector = provider.Create("ASP.NET Identity");
 
             UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
-
         }
     }
 }

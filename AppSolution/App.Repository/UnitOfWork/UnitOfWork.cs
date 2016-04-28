@@ -9,8 +9,6 @@ namespace App.Repository.UnitOfWork
         private AppContext _context = null;
         private UsuarioRepository _usuarioRepository = null;
 
-        public UnitOfWork() { }
-
         public UnitOfWork(AppContext contexto)
         {
             _context = contexto;

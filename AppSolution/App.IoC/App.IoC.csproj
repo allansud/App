@@ -81,6 +81,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\App.Business\App.Business.csproj">
+      <Project>{583c434a-3663-471b-9b92-f2dc6aa71f23}</Project>
+      <Name>App.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\App.Identity\App.Identity.csproj">
       <Project>{194bb862-7354-483c-be0f-5af9a176310a}</Project>
       <Name>App.Identity</Name>
