@@ -14,7 +14,7 @@ namespace App.Identity.Configuration
         public Task SendAsync(IdentityMessage message)
         {
             // Habilitar o envio de e-mail
-            if (false)
+            if (true)
             {
                 var text = HttpUtility.HtmlEncode(message.Body);
 

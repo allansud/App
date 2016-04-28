@@ -9,7 +9,7 @@ using Owin;
 using App.Identity.Configuration;
 using App.Identity.Model;
 
-namespace App.Presentation.App_Start
+namespace App.Presentation
 {
     public partial class Startup
     {
