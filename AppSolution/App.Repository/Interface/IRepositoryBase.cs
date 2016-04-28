@@ -15,7 +15,7 @@ namespace App.Repository.Interface
         /// </summary>
         /// <param name="key">Chave primária de uma entidade para ser retornada</param>
         /// <returns>Entity</returns>
-        TEntity Get(int key);
+        TEntity Get(string key);
 
         /// <summary>
         /// Inseri uma entidade no banco de dados.

@@ -36,7 +36,7 @@ namespace App.Repository.Implementation
             
         }
 
-        public TEntity Get(int key)
+        public TEntity Get(string key)
         {
             return Set.Find(key);
         }

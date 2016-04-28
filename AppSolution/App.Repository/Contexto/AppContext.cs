@@ -14,7 +14,7 @@ namespace App.Repository.Contexto
     {
         public AppContext() : base("AppConnect") { }
 
-        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

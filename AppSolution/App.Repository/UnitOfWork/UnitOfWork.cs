@@ -7,15 +7,13 @@ namespace App.Repository.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private AppContext _context = null;
-        private IDbContextFactory _factory = null;
         private UsuarioRepository _usuarioRepository = null;
 
         public UnitOfWork() { }
 
-        public UnitOfWork(IDbContextFactory factory)
+        public UnitOfWork(AppContext contexto)
         {
-            _factory = factory;
-            _context = _factory.Create<AppContext>("AppConnect");
+            _context = contexto;
         }
 
         public IUsuarioRepository UsuarioRepository
@@ -28,8 +26,6 @@ namespace App.Repository.UnitOfWork
 
         public void Dispose()
         {
-            _factory.Release<AppContext>();
-            _factory = null;
             _usuarioRepository = null;
             _context.Dispose();
         }
