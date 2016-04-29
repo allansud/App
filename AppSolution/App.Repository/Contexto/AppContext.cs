@@ -1,12 +1,7 @@
 ﻿using App.Domain.Entities;
 using App.Repository.EntityConfig;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Repository.Contexto
 {
