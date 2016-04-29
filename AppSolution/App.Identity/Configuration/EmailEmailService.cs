@@ -25,7 +25,7 @@ namespace App.Identity.Configuration
                 msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
                 msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Html));
 
-                var smtpClient = new SmtpClient("smtp.provedor.com", Convert.ToInt32(587));
+                var smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
                 var credentials = new NetworkCredential(ConfigurationManager.AppSettings["ContaDeEmail"],
                     ConfigurationManager.AppSettings["SenhaEmail"]);
                 smtpClient.Credentials = credentials;

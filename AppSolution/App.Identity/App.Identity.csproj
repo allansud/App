@@ -126,6 +126,7 @@
     <Compile Include="Configuration\EmailEmailService.cs" />
     <Compile Include="Configuration\SmsService.cs" />
     <Compile Include="Contexto\AppIdentityContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AddPhoneNumberViewModel.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
     <Compile Include="Model\ChangePasswordViewModel.cs" />
