@@ -10,5 +10,6 @@ namespace App.Business.Interface
         IQueryable<Usuario> GetAll();
         void Update(Usuario usuario);
         void Remove(Usuario usuario);
+        void DesativarLock(string id);
     }
 }

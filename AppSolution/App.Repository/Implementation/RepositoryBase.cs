@@ -3,6 +3,7 @@ using App.Repository.Interface;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using App.Domain.Entities;
 
 namespace App.Repository.Implementation
 {
@@ -33,7 +34,7 @@ namespace App.Repository.Implementation
 
         public void Dispose()
         {
-            
+
         }
 
         public TEntity Get(string key)

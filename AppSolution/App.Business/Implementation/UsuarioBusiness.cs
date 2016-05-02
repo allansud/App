@@ -21,6 +21,13 @@ namespace App.Business.Implementation
         public void Add(Usuario usuario)
         {
             _unitOfWork.UsuarioRepository.Insert(usuario);
+            _unitOfWork.SaveChanges();
+        }
+
+        public void DesativarLock(string id)
+        {
+            _unitOfWork.UsuarioRepository.DesativarLock(id);
+            _unitOfWork.SaveChanges();
         }
 
         public IQueryable<Usuario> GetAll()
@@ -38,11 +45,13 @@ namespace App.Business.Implementation
         public void Remove(Usuario usuario)
         {
             _unitOfWork.UsuarioRepository.Delete(usuario);
+            _unitOfWork.SaveChanges();
         }
 
         public void Update(Usuario usuario)
         {
             _unitOfWork.UsuarioRepository.Update(usuario);
+            _unitOfWork.SaveChanges();
         }
     }
 }
