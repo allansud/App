@@ -7,8 +7,7 @@ namespace App.Identity.Contexto
 {
     public class AppIdentityContext : IdentityDbContext<ApplicationUser>, IDisposable
     {
-        public AppIdentityContext()
-            : base("AppConnect", throwIfV1Schema: false)
+        public AppIdentityContext() : base("AppConnect", throwIfV1Schema: false)
         {
 
         }
