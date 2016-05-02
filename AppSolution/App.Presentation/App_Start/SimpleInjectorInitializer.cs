@@ -1,4 +1,5 @@
 ﻿using App.IoC;
+using App.Presentation.App_Start;
 using Microsoft.Owin;
 using SimpleInjector;
 using SimpleInjector.Advanced;
@@ -7,6 +8,9 @@ using SimpleInjector.Integration.Web.Mvc;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using WebActivatorEx;
+
+[assembly: PostApplicationStartMethod(typeof(SimpleInjectorInitializer), "Initialize")]
 
 namespace App.Presentation.App_Start
 {
