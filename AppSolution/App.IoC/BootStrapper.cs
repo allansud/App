@@ -23,7 +23,7 @@ namespace App.IoC
             container.RegisterPerWebRequest<IUsuarioBusiness, UsuarioBusiness>();
 
             //Asp.Net.Identity
-            container.RegisterPerWebRequest<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>(new AppIdentityContext()));
+            container.RegisterPerWebRequest<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>(container.GetInstance<AppContext>()));
             container.RegisterPerWebRequest<IRoleStore<IdentityRole, string>>(() => new RoleStore<IdentityRole>());
             container.RegisterPerWebRequest<ApplicationRoleManager>();
             container.RegisterPerWebRequest<ApplicationUserManager>();
