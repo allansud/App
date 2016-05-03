@@ -129,6 +129,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AddPhoneNumberViewModel.cs" />
     <Compile Include="Model\ApplicationUser.cs" />
+    <Compile Include="Model\AppUser.cs" />
     <Compile Include="Model\ChangePasswordViewModel.cs" />
     <Compile Include="Model\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Model\ExternalLoginConfirmationViewModel.cs" />

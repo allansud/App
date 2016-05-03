@@ -1,17 +1,13 @@
-﻿using App.Domain.Entities;
+﻿using App.Identity.Model;
 using System.Data.Entity.ModelConfiguration;
 
 namespace App.Repository.EntityConfig
 {
-    public class UsuarioConfig : EntityTypeConfiguration<Usuario>
+    public class AppUserConfig : EntityTypeConfiguration<AppUser>
     {
-        public UsuarioConfig()
+        public AppUserConfig()
         {
             HasKey(u => u.Id);
-
-            Property(u => u.Id)
-                .IsRequired()
-                .HasMaxLength(128);
 
             Property(u => u.Email)
                 .IsRequired()
