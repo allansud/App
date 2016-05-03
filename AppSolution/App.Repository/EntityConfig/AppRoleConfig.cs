@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace App.Repository.EntityConfig
 {
-    public class RoleConfig : EntityTypeConfiguration<Role>
+    public class AppRoleConfig : EntityTypeConfiguration<AppRole>
     {
-        public RoleConfig()
+        public AppRoleConfig()
         {
             HasKey(r => r.Id);
 

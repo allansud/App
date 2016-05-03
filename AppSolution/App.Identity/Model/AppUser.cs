@@ -9,6 +9,11 @@ namespace App.Identity.Model
 {
     public class AppUser : IUser<int>
     {
+        public AppUser()
+        {
+            Claims = new HashSet<AppUserClaim>();
+        }
+
         public int Id { get; set; }
 
         public string UserName { get; set; }
@@ -32,5 +37,11 @@ namespace App.Identity.Model
         public virtual bool LockoutEnabled { get; set; }
 
         public virtual int AccessFailedCount { get; set; }
+
+        public virtual ICollection<AppUserClaim> Claims { get; set; }
+
+        public virtual ICollection<AppRole> Roles { get; set; }
+
+        public virtual ICollection<AppUserLogin> Logins { get; set; }
     }
 }

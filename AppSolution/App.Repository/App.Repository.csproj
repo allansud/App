@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexto\AppContext.cs" />
+    <Compile Include="EntityConfig\AppUserClaimConfig.cs" />
     <Compile Include="EntityConfig\AppUserConfig.cs" />
-    <Compile Include="EntityConfig\RoleConfig.cs" />
+    <Compile Include="EntityConfig\AppRoleConfig.cs" />
+    <Compile Include="EntityConfig\AppUserLoginConfig.cs" />
     <Compile Include="Implementation\RepositoryBase.cs" />
     <Compile Include="Implementation\UsuarioRepository.cs" />
     <Compile Include="Interface\IRepositoryBase.cs" />
