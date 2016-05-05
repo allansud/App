@@ -44,7 +44,9 @@
     <Compile Include="Interface\IUsuarioBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Domain\App.Domain.csproj">
       <Project>{7b2b60e2-2825-4b4d-ba55-dae4ed97c920}</Project>

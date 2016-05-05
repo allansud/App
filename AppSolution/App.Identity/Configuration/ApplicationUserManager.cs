@@ -6,13 +6,13 @@ using System;
 
 namespace App.Identity.Configuration
 {
-    public class ApplicationUserManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<AppUser, int>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
+        public ApplicationUserManager(IUserStore<AppUser, int> store)
             : base(store)
         {
             // Configurando validator para nome de usuario
-            UserValidator = new UserValidator<ApplicationUser>(this)
+            UserValidator = new UserValidator<AppUser, int>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -34,12 +34,12 @@ namespace App.Identity.Configuration
             MaxFailedAccessAttemptsBeforeLockout = 5;
 
             // Providers de Two Factor Autentication
-            RegisterTwoFactorProvider("Código via SMS", new PhoneNumberTokenProvider<ApplicationUser>
+            RegisterTwoFactorProvider("Código via SMS", new PhoneNumberTokenProvider<AppUser, int>
             {
                 MessageFormat = "Seu código de segurança é: {0}"
             });
 
-            RegisterTwoFactorProvider("Código via E-mail", new EmailTokenProvider<ApplicationUser>
+            RegisterTwoFactorProvider("Código via E-mail", new EmailTokenProvider<AppUser, int>
             {
                 Subject = "Código de Segurança",
                 BodyFormat = "Seu código de segurança é: {0}"
@@ -54,7 +54,7 @@ namespace App.Identity.Configuration
             var provider = new DpapiDataProtectionProvider("Eduardo");
             var dataProtector = provider.Create("ASP.NET Identity");
 
-            UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtector);
+            UserTokenProvider = new DataProtectorTokenProvider<AppUser, int>(dataProtector);
         }
     }
 }

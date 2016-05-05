@@ -7,8 +7,6 @@ namespace App.Repository.EntityConfig
     {
         public AppUserConfig()
         {
-            HasKey(u => u.Id);
-
             Property(u => u.Email)
                 .IsRequired()
                 .HasMaxLength(256);
@@ -16,8 +14,6 @@ namespace App.Repository.EntityConfig
             Property(u => u.UserName)
                 .IsRequired()
                 .HasMaxLength(256);
-
-            ToTable("AspNetUsers");
-        }
+        }       
     }
 }

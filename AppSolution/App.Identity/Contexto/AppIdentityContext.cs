@@ -1,13 +1,13 @@
 ﻿using App.Identity.Model;
+using App.Identity.Stores;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Data.Entity;
 
 namespace App.Identity.Contexto
 {
-    public class AppIdentityContext : IdentityDbContext<ApplicationUser>, IDisposable
+    public class AppIdentityContext : IdentityDbContext<AppUser, CustomRole, int, AppUserLogin, AppUserRole, AppUserClaim>
     {
-        public AppIdentityContext() : base("AppConnect", throwIfV1Schema: false)
+        public AppIdentityContext() : base("AppConnect")
         {
 
         }
@@ -15,6 +15,11 @@ namespace App.Identity.Contexto
         public static AppIdentityContext Create()
         {
             return new AppIdentityContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
         }
     }
 }

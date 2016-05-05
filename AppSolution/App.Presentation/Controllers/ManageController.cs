@@ -34,14 +34,14 @@ namespace App.Presentation.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "O Telefone foi removido."
                 : "";
 
-            var userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId<int>();
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await _userManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(User.Identity.GetUserId())
             };
             return View(model);
         }
@@ -53,10 +53,10 @@ namespace App.Presentation.Controllers
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
-            var result = await _userManager.RemoveLoginAsync(User.Identity.GetUserId(), new UserLoginInfo(loginProvider, providerKey));
+            var result = await _userManager.RemoveLoginAsync(User.Identity.GetUserId<int>(), new UserLoginInfo(loginProvider, providerKey));
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
                 if (user != null)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -88,7 +88,7 @@ namespace App.Presentation.Controllers
                 return View(model);
             }
             // Generate the token and send it
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId<int>(), model.Number);
             if (_userManager.SmsService != null)
             {
                 var message = new IdentityMessage
@@ -125,8 +125,8 @@ namespace App.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
         {
-            await _userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            await _userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId<int>(), true);
+            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (user != null)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -140,8 +140,8 @@ namespace App.Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
         {
-            await _userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
-            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            await _userManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId<int>(), false);
+            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (user != null)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -155,7 +155,7 @@ namespace App.Presentation.Controllers
         {
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
+            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId<int>(), phoneNumber);
 
             ViewBag.Status = "DEMO: Caso o código não chegue via SMS o código é: ";
             ViewBag.CodigoAcesso = code;
@@ -173,10 +173,10 @@ namespace App.Presentation.Controllers
             {
                 return View(model);
             }
-            var result = await _userManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
+            var result = await _userManager.ChangePhoneNumberAsync(User.Identity.GetUserId<int>(), model.PhoneNumber, model.Code);
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
                 if (user != null)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -193,12 +193,12 @@ namespace App.Presentation.Controllers
         // GET: /Manage/RemovePhoneNumber
         public async Task<ActionResult> RemovePhoneNumber()
         {
-            var result = await _userManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
+            var result = await _userManager.SetPhoneNumberAsync(User.Identity.GetUserId<int>(), null);
             if (!result.Succeeded)
             {
                 return RedirectToAction("Index", new { Message = ManageMessageId.Error });
             }
-            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (user != null)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -223,10 +223,10 @@ namespace App.Presentation.Controllers
             {
                 return View(model);
             }
-            var result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            var result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId<int>(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
                 if (user != null)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -252,10 +252,10 @@ namespace App.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+                var result = await _userManager.AddPasswordAsync(User.Identity.GetUserId<int>(), model.NewPassword);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+                    var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
                     if (user != null)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -277,12 +277,12 @@ namespace App.Presentation.Controllers
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
-            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = await _userManager.FindByIdAsync(User.Identity.GetUserId<int>());
             if (user == null)
             {
                 return View("Error");
             }
-            var userLogins = await _userManager.GetLoginsAsync(User.Identity.GetUserId());
+            var userLogins = await _userManager.GetLoginsAsync(User.Identity.GetUserId<int>());
             var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
@@ -311,7 +311,7 @@ namespace App.Presentation.Controllers
             {
                 return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
             }
-            var result = await _userManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
+            var result = await _userManager.AddLoginAsync(User.Identity.GetUserId<int>(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
@@ -348,7 +348,7 @@ namespace App.Presentation.Controllers
 
         private bool HasPassword()
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindById(User.Identity.GetUserId<int>());
             if (user != null)
             {
                 return user.PasswordHash != null;
@@ -358,7 +358,7 @@ namespace App.Presentation.Controllers
 
         private bool HasPhoneNumber()
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user = _userManager.FindById(User.Identity.GetUserId<int>());
             if (user != null)
             {
                 return user.PhoneNumber != null;

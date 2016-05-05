@@ -7,12 +7,6 @@ namespace App.Repository.EntityConfig
     {
         public AppUserLoginConfig()
         {
-            HasKey(l => l.LoginProvider);
-
-            HasKey(l => l.ProviderKey);
-
-            HasKey(l => l.UserId);
-
             Property(l => l.LoginProvider)
                 .IsRequired()
                 .HasMaxLength(128);
@@ -20,8 +14,6 @@ namespace App.Repository.EntityConfig
             Property(l => l.ProviderKey)
                 .IsRequired()
                 .HasMaxLength(128);
-
-            ToTable("AspNetUserLogins");
         }
     }
 }

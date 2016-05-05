@@ -7,13 +7,9 @@ namespace App.Repository.EntityConfig
     {
         public AppRoleConfig()
         {
-            HasKey(r => r.Id);
-
             Property(r => r.Name)
                 .HasMaxLength(256)
                 .IsRequired();
-
-            ToTable("AspNetRoles");
         }
     }
 }

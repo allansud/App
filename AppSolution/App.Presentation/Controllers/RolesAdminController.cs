@@ -39,7 +39,7 @@ namespace App.Presentation.Controllers
             }
             var role = await _roleManager.FindByIdAsync(id);
             // Get the list of Users in this Role
-            var users = new List<ApplicationUser>();
+            var users = new List<AppUser>();
 
             // Get the list of Users in this Role
             foreach (var user in _userManager.Users.ToList())
