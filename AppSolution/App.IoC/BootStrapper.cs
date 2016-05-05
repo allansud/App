@@ -23,9 +23,8 @@ namespace App.IoC
             container.RegisterPerWebRequest<IUsuarioBusiness, UsuarioBusiness>();
 
             //Asp.Net.Identity
-            container.Register(() => new AppIdentityContext(), Lifestyle.Scoped);
-            container.RegisterPerWebRequest<CustomUserStore>();
-            container.RegisterPerWebRequest<CustomRoleStore>();
+            container.Register(() => new CustomUserStore(new AppIdentityContext()), Lifestyle.Scoped);
+            container.Register(() => new CustomRoleStore(new AppIdentityContext()), Lifestyle.Scoped);
             container.RegisterPerWebRequest<IUserStore<AppUser, int>>(() => container.GetInstance<CustomUserStore>());
             container.RegisterPerWebRequest<IRoleStore<AppRole, int>>(() => container.GetInstance<CustomRoleStore>());
             container.RegisterPerWebRequest<ApplicationRoleManager>();
