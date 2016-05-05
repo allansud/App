@@ -31,9 +31,9 @@ namespace App.Presentation.Controllers
 
         //
         // GET: /Roles/Details/5
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(int id)
         {
-            if (id == null)
+            if (id == default(int))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -69,7 +69,7 @@ namespace App.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var role = new IdentityRole(roleViewModel.Name);
+                var role = new AppRole(roleViewModel.Name);
                 var roleresult = await _roleManager.CreateAsync(role);
                 if (!roleresult.Succeeded)
                 {
@@ -83,9 +83,9 @@ namespace App.Presentation.Controllers
 
         //
         // GET: /Roles/Edit/Admin
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == default(int))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -117,9 +117,9 @@ namespace App.Presentation.Controllers
 
         //
         // GET: /Roles/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id == default(int))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -135,11 +135,11 @@ namespace App.Presentation.Controllers
         // POST: /Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id, string deleteUser)
+        public async Task<ActionResult> DeleteConfirmed(int id, string deleteUser)
         {
             if (ModelState.IsValid)
             {
-                if (id == null)
+                if (id == default(int))
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }

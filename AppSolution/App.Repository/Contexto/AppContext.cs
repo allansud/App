@@ -22,10 +22,10 @@ namespace App.Repository.Contexto
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
-            modelBuilder.Configurations.Add(new AppUserConfig());
-            modelBuilder.Configurations.Add(new AppRoleConfig());
-            modelBuilder.Configurations.Add(new AppUserClaimConfig());
-            modelBuilder.Configurations.Add(new AppUserLoginConfig());
+            //modelBuilder.Configurations.Add(new AppUserConfig());
+            //modelBuilder.Configurations.Add(new AppRoleConfig());
+            //modelBuilder.Configurations.Add(new AppUserClaimConfig());
+            //modelBuilder.Configurations.Add(new AppUserLoginConfig());
 
             //Mapeando AppUserLogin...
             modelBuilder.Entity<AppUserLogin>().Map(c => 

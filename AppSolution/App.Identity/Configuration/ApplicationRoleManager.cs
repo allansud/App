@@ -1,14 +1,15 @@
 ﻿using App.Identity.Contexto;
+using App.Identity.Model;
+using App.Identity.Stores;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 
 namespace App.Identity.Configuration
 {
-    public class ApplicationRoleManager : RoleManager<IdentityRole>
+    public class ApplicationRoleManager : RoleManager<AppRole, int>
     {
-        public ApplicationRoleManager(IRoleStore<IdentityRole, string> roleStore)
+        public ApplicationRoleManager(IRoleStore<AppRole, int> roleStore)
             : base(roleStore)
         {
 
@@ -16,7 +17,8 @@ namespace App.Identity.Configuration
 
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<AppIdentityContext>()));
+            var customRoleStore = new CustomRoleStore(context.Get<AppIdentityContext>());
+            return new ApplicationRoleManager(customRoleStore);
         }
     }
 }

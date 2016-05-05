@@ -5,7 +5,7 @@ using System.Data.Entity;
 
 namespace App.Identity.Contexto
 {
-    public class AppIdentityContext : IdentityDbContext<AppUser, CustomRole, int, AppUserLogin, AppUserRole, AppUserClaim>
+    public class AppIdentityContext : IdentityDbContext<AppUser, AppRole, int, AppUserLogin, AppUserRole, AppUserClaim>
     {
         public AppIdentityContext() : base("AppConnect")
         {
@@ -15,11 +15,6 @@ namespace App.Identity.Contexto
         public static AppIdentityContext Create()
         {
             return new AppIdentityContext();
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-
         }
     }
 }
