@@ -62,10 +62,9 @@
     <Compile Include="EntityConfig\AppUserConfig.cs" />
     <Compile Include="EntityConfig\AppRoleConfig.cs" />
     <Compile Include="EntityConfig\AppUserLoginConfig.cs" />
+    <Compile Include="Implementation\CustomUserStore.cs" />
     <Compile Include="Implementation\RepositoryBase.cs" />
-    <Compile Include="Implementation\UsuarioRepository.cs" />
     <Compile Include="Interface\IRepositoryBase.cs" />
-    <Compile Include="Interface\IUsuarioRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />

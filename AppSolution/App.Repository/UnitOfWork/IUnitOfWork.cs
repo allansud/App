@@ -1,9 +1,6 @@
-﻿using App.Repository.Interface;
+﻿using App.Identity.Model;
+using App.Repository.Implementation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Repository.UnitOfWork
 {
@@ -15,7 +12,7 @@ namespace App.Repository.UnitOfWork
         /// <summary>
         /// Retorna repositório usuário.
         /// </summary>
-        IUsuarioRepository UsuarioRepository { get; }
+        CustomUserStore<AppUser, int> CustomUserStore { get; }
 
         /// <summary>
         /// Commits transaction and closes database connection.

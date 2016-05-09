@@ -1,38 +1,30 @@
-﻿using App.Business.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace App.Presentation.Controllers
 {
     [Authorize]
     public class UsuariosController : Controller
     {
-        private readonly IUsuarioBusiness _usuarioBusiness;
-
-        public UsuariosController(IUsuarioBusiness usuarioBusiness)
+        public UsuariosController()
         {
-            _usuarioBusiness = usuarioBusiness;
+
         }
 
         // GET: Usuarios
         public ActionResult Index()
         {
-            return View(_usuarioBusiness.GetAll());
+            return View();
         }
 
         // GET: Usuarios/Details/5
         public ActionResult Details(string id)
         {
-            return View(_usuarioBusiness.GetById(id));
+            return View();
         }
 
         public ActionResult DesativarLock(string id)
         {
-            _usuarioBusiness.DesativarLock(id);
-            return RedirectToAction("Index");
+            return View();
         }
     }
 }
